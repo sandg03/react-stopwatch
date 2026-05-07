@@ -1,0 +1,79 @@
+# ⏱ Chrono — React Native Stopwatch App
+
+A clean, high-precision stopwatch app built with React Native & Expo.
+
+---
+
+## 🚀 Setup & Running
+
+### Prerequisites
+- Node.js installed (v18+ recommended)
+- Expo Go app on your phone (iOS or Android) **OR** an emulator
+
+### Install & Run
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Start the Expo development server
+npx expo start
+
+# 3. Scan the QR code with Expo Go on your phone
+#    OR press 'i' for iOS simulator / 'a' for Android emulator
+```
+
+---
+
+## 📱 Features
+
+| Button | Action |
+|--------|--------|
+| ▶ START | Begins or resumes the timer |
+| ⏸ PAUSE | Freezes the timer, keeps the current time |
+| ⏹ STOP | Stops and resets timer to 00:00.00 |
+| 🏁 LAP | Records the current time as a lap |
+| ✕ (per lap) | Removes that individual lap |
+| CLEAR ALL | Removes all recorded laps |
+
+### Bonus Features
+- ⚡ **Best lap** highlighted in green
+- 🐢 **Slowest lap** highlighted in red
+- ✕ **Individual lap removal** — tap X on any lap to delete just that one
+- ℹ️ **About page** via bottom tab navigation
+
+---
+
+## 🗂 Project Structure
+
+```
+StopwatchApp/
+├── App.js                    # Navigation container + tab bar setup
+├── screens/
+│   ├── StopwatchScreen.js    # Main stopwatch UI & logic
+│   └── AboutScreen.js        # About page with feature descriptions
+├── app.json                  # Expo config
+└── package.json
+```
+
+---
+
+## 🎨 Design
+
+- **Dark theme** with a deep navy/black palette
+- **Monospace** typography throughout for a precision feel
+- **Accent color**: Cyan `#00F5C4` for active states
+- **Color-coded buttons**: green (start), amber (pause), red (stop), blue (lap)
+- **Animated status dot** pulses while the timer runs
+
+---
+
+## ⚙️ How Timing Works
+
+The timer uses `Date.now()` to capture a start timestamp, then calculates elapsed time on each 10ms interval tick:
+
+```js
+elapsed = accumulatedTime + (Date.now() - startTime)
+```
+
+This approach is **drift-resistant** — the timer stays accurate even if the interval fires late.
